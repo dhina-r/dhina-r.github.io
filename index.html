@@ -13,11 +13,16 @@
     <div class="inputdiv">
         <label for="totalMark">Total Marks:</label>
         <input type="number" id="totalMark" placeholder="Enter total marks" value="500" disabled>
-        <label class="switch">
-            <input type="checkbox" id="toggleEdit">
-            <span class="slider round"></span>
-        </label>
-        <span id="toggleLabel">Edit Total Marks</span>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="editToggle" id="editToggle" value="edit">
+                Edit Total Marks
+            </label>
+            <label>
+                <input type="radio" name="editToggle" id="viewToggle" value="view" checked>
+                View Total Marks
+            </label>
+        </div>
     </div>
     
     <div class="inputdiv">
@@ -53,14 +58,14 @@
         result.innerText = roundedPercentage + " %";
     }
 
-    // Toggle switch functionality
-    document.getElementById('toggleEdit').addEventListener('change', function() {
-        const totalMarkInput = document.getElementById('totalMark');
-        const isChecked = this.checked;
+    // Handle radio button change
+    document.querySelectorAll('input[name="editToggle"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const totalMarkInput = document.getElementById('totalMark');
+            const isEdit = document.getElementById('editToggle').checked;
 
-        // Enable editing when switch is off, disable when switch is on
-        totalMarkInput.disabled = isChecked;
-        document.getElementById('toggleLabel').innerText = isChecked ? 'Edit Total Marks' : 'Save Total Marks';
+            totalMarkInput.disabled = !isEdit;
+        });
     });
 </script>
 </body>
