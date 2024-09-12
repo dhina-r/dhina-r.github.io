@@ -9,24 +9,67 @@
 <body>
 <div id="wrapper">
     <h2>MARK TO PERCENT</h2>
+    
     <div class="inputdiv">
-        <input type="text" id="input" placeholder="mark to percentage">
+        <label for="totalMark">Total Marks:</label>
+        <input type="number" id="totalMark" placeholder="Enter total marks" value="500" disabled>
+        <button id="toggleEdit">Edit Total Marks</button>
     </div>
+    
+    <div class="inputdiv">
+        <label for="input">Marks Obtained:</label>
+        <input type="number" id="input" placeholder="Enter marks obtained">
+    </div>
+    
     <div>
-        <button type="submit" onclick="convert()">% CONVERTER</button>
+        <button type="button" onclick="convert()">% CONVERTER</button>
     </div>
-   <div id="result">
-
-   </div>
+   
+    <div id="result"></div>
 </div>
 <script>
-    function convert(){ const Gmark =   Number(document.getElementById("input").value)
-  const Pval = (Gmark/500)*100
-  const roundedPval = Math.round(Pval);
-  const result = document.getElementById("result")
-result.innerText = roundedPval + " %"
- }
- 
+    // Function to convert marks to percentage
+    function convert() {
+        // Get the total marks and the marks obtained
+        const totalMarks = Number(document.getElementById("totalMark").value);
+        const obtainedMarks = Number(document.getElementById("input").value);
+        
+        if (totalMarks <= 0) {
+            alert('Total marks must be greater than zero.');
+            return;
+        }
+
+        if (isNaN(obtainedMarks) || isNaN(totalMarks)) {
+            alert('Please enter valid numbers.');
+            return;
+        }
+
+        // Calculate the percentage
+        const percentage = (obtainedMarks / totalMarks) * 100;
+        const roundedPercentage = Math.round(percentage);
+
+        // Display the result
+        const result = document.getElementById("result");
+        result.innerText = roundedPercentage + " %";
+    }
+
+    // Toggle edit mode for total marks input
+    document.getElementById('toggleEdit').addEventListener('click', function() {
+        const totalMarkInput = document.getElementById('totalMark');
+        const isDisabled = totalMarkInput.disabled;
+
+        // Toggle the disabled state
+        totalMarkInput.disabled = !isDisabled;
+
+        // Change button text based on the state
+        this.innerText = isDisabled ? 'Save Total Marks' : 'Edit Total Marks';
+
+        // If saving, trigger a fake "save" action
+        if (!isDisabled) {
+            // Here you might want to add functionality to save the value, if needed
+            console.log('Total Marks Saved:', totalMarkInput.value);
+        }
+    });
 </script>
 </body>
 </html>
