@@ -1,56 +1,99 @@
-/* General Styles */
+/* styles.css */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    margin: 0;
+    background-color: #f0f8ff; /* Light background color */
+    font-family: Arial, sans-serif; /* Clean font */
 }
 
 #wrapper {
-    text-align: center;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
     width: 90%;
-    max-width: 400px;
+    max-width: 500px; /* Set a maximum width for larger screens */
+    text-align: center;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-.inputdiv input {
-    width: calc(100% - 20px);
+.inputdiv {
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 button {
-    padding: 10px 20px;
+    background-color: #ff69b4; /* Button background color */
+    color: white; /* Text color */
     border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px; /* Rounded corners for buttons */
+    font-size: 16px; /* Font size */
     cursor: pointer;
+    transition: background-color 0.3s; /* Smooth color transition */
+    width: 100%; /* Make button fit the width of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #ff1493; /* Darker pink on hover */
 }
 
-#result {
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: bold;
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-left: 10px;
 }
 
-/* Media Queries */
-@media (max-width: 600px) {
-    button {
-        width: 100%;
-    }
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.round {
+    border-radius: 34px;
+}
+
+/* Media Queries 
