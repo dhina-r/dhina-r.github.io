@@ -10,10 +10,7 @@ body {
 }
 
 #wrapper {
-    width: 90%;
-    max-width: 500px; /* Set a maximum width for larger screens */
     text-align: center;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .inputdiv {
@@ -21,12 +18,10 @@ body {
 }
 
 input[type="number"] {
-    width: 100%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 button {
@@ -38,8 +33,6 @@ button {
     font-size: 16px; /* Font size */
     cursor: pointer;
     transition: background-color 0.3s; /* Smooth color transition */
-    width: 100%; /* Make button fit the width of its container */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 button:hover {
@@ -94,16 +87,4 @@ input:checked + .slider:before {
 
 .round {
     border-radius: 34px;
-}
-
-/* Media Queries for Responsive Design */
-@media (max-width: 600px) {
-    #wrapper {
-        width: 95%;
-    }
-    
-    input[type="number"], button {
-        font-size: 14px; /* Smaller font size on smaller screens */
-        padding: 8px;
-    }
 }
