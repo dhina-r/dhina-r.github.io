@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_p.css">
+    <title>LENGTH CONVERTER</title>
+</head>
+<body>
+<div id="wrapper">
+    <h2>MARK TO PERCENT</h2>
+    <div class="inputdiv">
+        <input type="text" id="input" placeholder="mark to percentage">
+    </div>
+    <div>
+        <button type="submit" onclick="convert()">% CONVERTER</button>
+    </div>
+   <div id="result">
+
+   </div>
+</div>
+<script>
+    function convert(){ const Gmark =   Number(document.getElementById("input").value)
+  const Pval = (Gmark/500)*100
+  const roundedPval = Math.round(Pval);
+  const result = document.getElementById("result")
+result.innerText = roundedPval + " %"
+ }
+ 
+</script>
+</body>
+</html>
