@@ -1,58 +1,74 @@
-html,
-body{
-   margin: 0;
-   font-family: 'Poppins', sans-serif;
-   background-color:#f5e8ba;
-}
-
-#wrapper div,#wrapper h2{
-    display:flex;
+/* styles.css */
+body {
+    display: flex;
     justify-content: center;
-    
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff; /* Light background color */
+    font-family: Arial, sans-serif; /* Clean font */
 }
 
-h2{
-    color:#ffeba7;
-    letter-spacing: 1px;
+#wrapper {
+    width: 90%;
+    max-width: 500px; /* Set a maximum width for larger screens */
+    text-align: center;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
-input{
+
+.inputdiv {
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    border: 2px solid black ;
-    margin-top:30px;
-    height:2em;
-    width:250px;
-    padding-left:10px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-input:active{
-    border:none;
-}
-#wrapper{
-    height:500px;
-    width:400px;
-    margin:200px auto;
-    background-color:#1f2029;
-    border-radius:10px;
-    padding:30px;
-}
-
-button{
-    margin-top:20px;
-    background-color:#ffeba7;
-    border-radius: 4px;
-    height: 44px;
-    font-weight: 600;
-    padding: 0 30px;
-    letter-spacing: 1px;
+button {
+    background-color: #ff69b4; /* Button background color */
+    color: white; /* Text color */
     border: none;
-    color: #102770;
+    padding: 10px 20px;
+    border-radius: 5px; /* Rounded corners for buttons */
+    font-size: 16px; /* Font size */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth color transition */
+    width: 100%; /* Make button fit the width of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-button:hover{
-    cursor:pointer;
+button:hover {
+    background-color: #ff1493; /* Darker pink on hover */
 }
-#result{
-    color:white;
-    margin-top:20px;
-    font-size:32px;
+
+.radio-group {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.radio-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+    #wrapper {
+        width: 95%;
+    }
+    
+    input[type="number"], button {
+        font-size: 14px; /* Smaller font size on smaller screens */
+        padding: 8px;
+    }
 }
