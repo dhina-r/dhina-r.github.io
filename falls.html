@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="styles.css">
     <style>
+        /* Overall body background and font settings */
+        body {
+            font-family: "Raleway", sans-serif;
+            background: #f0f8ff; /* Light Alice Blue background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            position: relative; /* Allow absolute positioning of child elements */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
         /* Ensure the title is prominently displayed */
         header {
             display: flex;
             justify-content: center; /* Center the title horizontally */
             align-items: center; /* Center the title vertically */
-            background-color: #6b2727; /* Background color */
+            background-color: #ffcccb; /* Light pink background */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
             padding: 10px 0; /* Vertical padding for spacing */
             margin-bottom: 20px; /* Space below the header */
@@ -21,23 +32,36 @@
         header .title {
             font-size: 2.5em; /* Increase font size */
             font-weight: bold; /* Make the font bold */
-            color: #333; /* Dark color for contrast */
+            color: #ff69b4; /* Hot pink color for the title */
             text-transform: uppercase; /* Uppercase text */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow for better visibility */
             padding: 10px 20px; /* Padding around the text */
-            background-color: #f1f1f1; /* Background color */
-            border-radius: 8px; /* Rounded corners */
+            background-color: #fff; /* White background for the title */
+            border-radius: 12px; /* Rounded corners */
         }
 
-        body, h1, h2, h3, h4, h5 {
-            font-family: "Raleway", sans-serif;
+        /* Background image container */
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind other content */
+            background-image: url('/path-to-your-background-image.jpg'); /* Add your background image path here */
+            background-size: cover; /* Cover the entire container */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            opacity: 0.2; /* Adjust the opacity */
         }
+
         #photo-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
             grid-auto-rows: 200px; /* Equal row height */
             grid-gap: 16px; /* Space between images */
             padding: 16px;
+            position: relative; /* Ensure it is above the background image */
         }
         #photo-gallery img {
             width: 100%;
@@ -55,14 +79,15 @@
         #pagination a {
             margin: 0 5px; /* Space between pagination buttons */
             padding: 10px 20px;
-            border-radius: 4px;
-            background-color: #f1f1f1; /* Light background for buttons */
-            color: #333;
+            border-radius: 6px;
+            background-color: #fff; /* White background for buttons */
+            color: #ff69b4; /* Hot pink color for button text */
             text-decoration: none;
+            border: 2px solid #ff69b4; /* Hot pink border */
         }
         #pagination a:hover {
-            background-color: #ddd; /* Darker background on hover */
-            color: #000;
+            background-color: #ff69b4; /* Hot pink background on hover */
+            color: #fff; /* White text on hover */
         }
         #pagination a.w3-black {
             background-color: #000;
@@ -74,17 +99,22 @@
             font-size: 1.2em;
             font-weight: bold;
             color: #fff;
-            background-color: #333;
+            background-color: #ff69b4; /* Hot pink background */
             text-decoration: none;
             border-radius: 6px;
             transition: background-color 0.3s ease;
+            border: 2px solid #ff69b4; /* Matching border */
         }
         .back-to-index-button:hover {
-            background-color: #555;
+            background-color: #ff1493; /* Darker pink on hover */
+            border-color: #ff1493; /* Darker pink border on hover */
         }
     </style>
 </head>
 <body class="w3-light-grey">
+
+<!-- Background Image -->
+<div class="background-container"></div>
 
 <!-- Top menu on small screens -->
 <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
