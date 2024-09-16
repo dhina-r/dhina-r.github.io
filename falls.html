@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TADA_FALLS_DATE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ensure the title is prominently displayed */
+        header {
+            display: flex;
+            justify-content: center; /* Center the title horizontally */
+            align-items: center; /* Center the title vertically */
+            background-color: #6b2727; /* Background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            padding: 10px 0; /* Vertical padding for spacing */
+            margin-bottom: 20px; /* Space below the header */
+        }
+
+        header .title {
+            font-size: 2.5em; /* Increase font size */
+            font-weight: bold; /* Make the font bold */
+            color: #333; /* Dark color for contrast */
+            text-transform: uppercase; /* Uppercase text */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Slight shadow for better visibility */
+            padding: 10px 20px; /* Padding around the text */
+            background-color: #f1f1f1; /* Background color */
+            border-radius: 8px; /* Rounded corners */
+        }
+
+        body, h1, h2, h3, h4, h5 {
+            font-family: "Raleway", sans-serif;
+        }
+        #photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+            grid-auto-rows: 200px; /* Equal row height */
+            grid-gap: 16px; /* Space between images */
+            padding: 16px;
+        }
+        #photo-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the space without stretching */
+            border-radius: 12px; /* Rounded corners */
+            border: 4px solid rgba(255, 255, 255, 0.7); /* Stylish border */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+            transition: transform 0.3s ease, filter 0.3s ease; /* Smooth transition */
+        }
+        #photo-gallery img:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+            filter: brightness(0.8); /* Darken image slightly */
+        }
+        #pagination a {
+            margin: 0 5px; /* Space between pagination buttons */
+            padding: 10px 20px;
+            border-radius: 4px;
+            background-color: #f1f1f1; /* Light background for buttons */
+            color: #333;
+            text-decoration: none;
+        }
+        #pagination a:hover {
+            background-color: #ddd; /* Darker background on hover */
+            color: #000;
+        }
+        #pagination a.w3-black {
+            background-color: #000;
+            color: #fff;
+        }
+        .back-to-index-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            background-color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-index-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+  <span class="w3-left w3-padding">FALLS DATE</span>
+  <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()"></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+
+  <!-- Photo grid -->
+  <div id="photo-gallery"></div>
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div id="pagination" class="w3-bar"></div>
+  </div>
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+  <!-- Back to Index Button -->
+  <div class="w3-center w3-padding-32">
+    <a href="index.html" class="back-to-index-button">HOME</a>
+  </div>
+
+</div>
+
+<script>
+// List of image URLs
+const images = [
+    "/image/chill2.jpeg",
+    "/image/ent.jpeg",
+    "/image/hill2.jpeg",
+    "/image/hill_sittingview.jpeg",
+    "/image/hillview_pose.jpeg",
+    "/image/me.jpeg",
+    "/image/me1.jpeg",
+    "/image/mon.jpeg",
+    "/image/mon_ent.jpeg",
+    "/image/mon_ent2.jpeg",
+    "/image/mon_ent3.jpeg",
+    "/image/mon_side.jpeg",
+    "/image/mon_sit.jpeg",
+    "/image/sater4.jpeg",
+    "/image/satr3.jpeg",
+    "/image/satr5.jpeg",
+    "/image/star.jpeg",
+    "/image/star6.jpeg",
+    "/image/water_1.jpeg",
+    "/image/water_2.jpeg",
+    "/image/water_b1.jpeg",
+    "/image/water_b2.jpeg",
+    "/image/water_b3.jpeg",
+    "/image/water_b4.jpeg",
+    "/image/water_chill.jpeg",
+    "/image/water_f1.jpeg",
+    "/image/water_facetoface.jpeg",
+    "/image/water_hug.jpeg",
+    "/image/water_l1.jpeg",
+    "/image/water_l2.jpeg",
+    "/image/water_lift1.jpeg",
+    "/image/water_lift2.jpeg",
+    "/image/water_p1.jpeg",
+    "/image/water_p2.jpeg",
+    "/image/water_rom.jpeg",
+    "/image/water_romhug.jpeg",
+    "/image/water_sidelook.jpeg",
+    "/image/water_toplook.jpeg"
+];
+
+const imagesPerPage = 12;  // Update to 12
+const totalPages = Math.ceil(images.length / imagesPerPage);
+
+// Function to display images for a given page
+function displayImages(page) {
+  const photoGallery = document.getElementById('photo-gallery');
+  photoGallery.innerHTML = '';
+
+  const start = (page - 1) * imagesPerPage;
+  const end = Math.min(start + imagesPerPage, images.length);
+
+  for (let i = start; i < end; i++) {
+    const imgElement = document.createElement('img');
+    imgElement.src = images[i];
+    imgElement.onclick = () => onClick(imgElement);
+    photoGallery.appendChild(imgElement);
+  }
+
+  // Update pagination controls
+  const pagination = document.getElementById('pagination');
+  pagination.innerHTML = '';
+  for (let i = 1; i <= totalPages; i++) {
+    const button = document.createElement('a');
+    button.href = '#';
+    button.className = 'w3-bar-item w3-button w3-hover-black';
+    button.innerText = i;
+    button.onclick = (e) => {
+      e.preventDefault();
+      displayImages(i);
+    };
+    if (i === page) {
+      button.className += ' w3-black';
+    }
+    pagination.appendChild(button);
+  }
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById('img01').src = element.src;
+  document.getElementById('modal01').style.display = 'block';
+  document.getElementById('caption').innerHTML = element.alt;
+}
+
+// Initial load
+displayImages(1);
+
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
