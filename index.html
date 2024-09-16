@@ -214,21 +214,54 @@ body, html {
         <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +91 63******90<br>
         <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: dhinaraghu13@gmail.com<br>
       </div>
-      <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
-      <form action="/action_page.php" target="_blank">
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-left" id="contactForm">
         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-          <div class="w3-half">
-            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-          </div>
-          <div class="w3-half">
-            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-          </div>
+            <input type="hidden" name="access_key" value="ece90780-2e18-4e06-9459-a56c10a729db">
+            <div class="w3-half">
+                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+                <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
         </div>
         <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
         <button class="w3-button w3-black w3-right w3-section" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+            <i class="fa fa-paper-plane"></i> SEND MESSAGE
         </button>
-      </form>
+    </form>
+    
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the default form submission
+      
+          // Create a FormData object to capture the form data
+          var formData = new FormData(this);
+      
+          // Use Fetch API to submit the form
+          fetch(this.action, {
+              method: 'POST',
+              body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+              // Check if submission was successful
+              if (data.success) {
+                  // Clear the form fields
+                  this.reset();
+                  // Optional: Display a success message
+                  alert('Your message has been sent successfully!');
+              } else {
+                  // Handle errors here
+                  alert('There was an error sending your message. Please try again.');
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              alert('There was an error sending your message. Please try again.');
+          });
+      });
+      </script>
+      
     </div>
   </div>
 </div>
